@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'models/food.dart'; //importing food.dart
+import 'models/food.dart'; // Importing food.dart
 
 void main() {
   runApp(const MenuApp());
@@ -10,7 +10,7 @@ class MenuApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //List of Food
+    // List of Food
     List<Food> food = [
       Food(name: 'Pasta', imgPath: 'assets/Images/pasta.jpg'),
       Food(name: 'Burger', imgPath: 'assets/Images/burger.jpg'),
@@ -22,6 +22,7 @@ class MenuApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          //Title and background color
           backgroundColor: Colors.red.shade300,
           title: const Text(
             "Menu",
@@ -31,13 +32,21 @@ class MenuApp extends StatelessWidget {
             ),
           ),
         ),
-        body: ListView.builder(
+
+        //Switched ListView to Gridview
+        body: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 1,
+            crossAxisSpacing: 10, //Spacing
+            mainAxisSpacing: 10, //Spacing
+          ),
           itemCount: food.length,
           itemBuilder: (context, index) {
             return Card(
-              margin: const EdgeInsets.all(10),
-              child: Row(
+              margin: const EdgeInsets.all(0),
+              child: Column(
                 children: [
+                  //Cycle throw food names and images
                   Container(
                     padding: const EdgeInsets.all(10),
                     child: Text(
@@ -48,7 +57,7 @@ class MenuApp extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 10),
+                  const SizedBox(height: 10),
                   Container(
                     padding: const EdgeInsets.all(10),
                     child: Image.asset(
